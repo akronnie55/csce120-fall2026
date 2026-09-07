@@ -8,6 +8,7 @@ void printMenu() {  // do not modify unless you add another option
   std::cout << " 'G': Make grayscale image" << std::endl;
   std::cout << " 'S': Make sepia image" << std::endl;
   std::cout << " 'N': Make invert image" << std::endl;
+  std::cout << " 'I': Make grayscale-invert image" << std::endl;
   std::cout << " 'Q': Quit" << std::endl;
   std::cout << "----------------------------------" << std::endl;
   std::cout << std::endl << "Please enter your choice: ";
@@ -25,6 +26,7 @@ int main() {
       case 'G':
       case 'S':
       case 'N':
+      case 'I':
         ProcessImage(menuChoice, image);
         break;
       case 'Q':  // does nothing but needed or default will execute
