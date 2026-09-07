@@ -173,7 +173,7 @@ void GrayscaleImage(std::vector<std::vector<Pixel> >& image) {
 void SepiaImage(std::vector<std::vector<Pixel> >& image) {
   std::cout << "Making sepia image... " << std::endl;
   std::cout << "  ... TBD" << std::endl;
-  // TODO(Student)
+  // TODO(Student Challenge)
 }
 
 
