@@ -38,6 +38,10 @@ void ProcessImage(char choice, std::vector<std::vector<Pixel> >& image) {
       InvertImage(image);
       OutputImageFilename = "invert." + originalImageFilename;
       break;
+    case 'I':
+      GrayscaleInvertImage(image);
+      OutputImageFilename = "gray.invert." + originalImageFilename;
+      break;
   }
 
   // output image
@@ -172,8 +176,30 @@ void GrayscaleImage(std::vector<std::vector<Pixel> >& image) {
  */
 void SepiaImage(std::vector<std::vector<Pixel> >& image) {
   std::cout << "Making sepia image... " << std::endl;
-  std::cout << "  ... TBD" << std::endl;
-  // TODO(Student Challenge)
+  for (int row=0; row < image.size(); ++row) {
+    for (int col=0; col < image.at(row).size(); col++) {
+      Pixel new_color;
+      new_color.r = 0.393 * image.at(row).at(col).r +
+        0.768 * image.at(row).at(col).g +
+        0.189 * image.at(row).at(col).b;
+      new_color.g = 0.349 * image.at(row).at(col).r +
+        0.686 * image.at(row).at(col).g +
+        0.168 * image.at(row).at(col).b;
+      new_color.b =  0.272 * image.at(row).at(col).r +
+        0.534 * image.at(row).at(col).g +
+        0.131 * image.at(row).at(col).b;
+
+      // max value is 255
+      if (new_color.r > 255)
+        new_color.r = 255;
+      if (new_color.g > 255)
+        new_color.g = 255;
+      if (new_color.b > 255)
+        new_color.b = 255;
+
+      image.at(row).at(col) = new_color;
+    }
+  }
 }
 
 
@@ -186,6 +212,25 @@ void SepiaImage(std::vector<std::vector<Pixel> >& image) {
  */
 void InvertImage(std::vector<std::vector<Pixel> >& image) {
   std::cout << "Making invert image... " << std::endl;
-  std::cout << " ... TBD" << std::endl;
-  // TODO(Student)
+  for (int row=0; row < image.size(); ++row) {
+    for (int col=0; col < image.at(row).size(); col++) {
+      Pixel new_color;
+      new_color.r = 255 - image.at(row).at(col).r;
+      new_color.g = 255 - image.at(row).at(col).g;
+      new_color.b = 255 - image.at(row).at(col).b;
+      image.at(row).at(col) = new_color;
+    }
+  }
 }
+
+/*  Function GrayscaleInvertImage
+ *  image: 2d-vector of Pixels (structs)
+ *  Return value: none, but image should be modified to be invert grayscale
+ *
+ *  Note: used existing functions to implement
+ */
+void GrayscaleInvertImage(std::vector<std::vector<Pixel> >& image) {
+  GrayscaleImage(image);
+  InvertImage(image);
+}
+

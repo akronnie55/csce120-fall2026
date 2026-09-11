@@ -186,6 +186,14 @@ void SepiaImage(std::vector<std::vector<Pixel> >& image) {
  */
 void InvertImage(std::vector<std::vector<Pixel> >& image) {
   std::cout << "Making invert image... " << std::endl;
-  std::cout << " ... TBD" << std::endl;
-  // TODO(Student)
+  for (int row=0; row < image.size(); ++row) {
+    for (int col=0; col < image.at(row).size(); col++) {
+      Pixel new_color;
+      new_color.r = 255 - image.at(row).at(col).r;
+      new_color.g = 255 - image.at(row).at(col).g;
+      new_color.b = 255 - image.at(row).at(col).b;
+      image.at(row).at(col) = new_color;
+    }
+  }
 }
+
